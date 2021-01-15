@@ -1,0 +1,30 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+.inner {
+    max-width: 50%;
+}
+
+.column {
+    float: left;
+    width: 30%;
+    padding: 5px;
+}
+
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+figcaption {
+    color: darkgray;
+    font-style: italic;
+    font-size: small;
+}
+
+figure {
+    text-align: center;
+}

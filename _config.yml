@@ -1,1 +1,6 @@
 theme: jekyll-theme-slate
+kramdown:
+  math_engine: mathjax
+  toc_levels: "1..2"
+title: "Développer comme les pros"
+description: Cours magistral
