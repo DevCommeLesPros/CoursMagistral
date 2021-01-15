@@ -6,7 +6,7 @@
 ## L’environnement de développement
 
 <figure style="float: right">
-    <img src="/assets/images/without-IDE.svg"/>
+    <img src="assets/images/without-IDE.svg"/>
     <figcaption>Faites connaissance avec l'«acteur».</figcaption>
 </figure>
 Développer un programme fait souvent appel à utiliser bien d’autres outils et programmes.
@@ -34,7 +34,7 @@ Outre compiler (ou interpréter) du code et le déboguer facilement, un EDI peut
 - déployer une application web sur un ou plusieurs serveur.
 
 <figure style="float: right;">
-    <img src="/assets/images/with-IDE.svg"/>
+    <img src="assets/images/with-IDE.svg"/>
 </figure>
 Il existe de nombreux EDIs.
 Certains sont axés sur la plateforme de développement (`AndroidStudio` pour Android, `Xcode` pour la «iFamille», etc.), d’autres sur le langage de programmation (`IntelliJ IDEA` pour Java, `IDLE` pour Python), d’autres encore restent plus agnostiques et permettent à l’utilisateur de les configurer pour la tâche en question, quels que soient la plateforme ou le langage.
@@ -192,11 +192,11 @@ On peut aussi exécuter le programme jusqu’à un certain point ou une certaine
 Voici ce qu’on observe avec `Visual Studio Code` si on fige l’exécution de notre programme problématique juste après être entré dans la fonction `rotation` :
 
 <figure>
-    <img src="/assets/images/vscode-debug.png"/>
+    <img src="assets/images/vscode-debug.png"/>
     <figcaption>Voyons voir l’onglet «VARIABLES».</figcaption>
 </figure>
 <figure>
-    <img src="/assets/images/vscode-debug-variable.png"/>
+    <img src="assets/images/vscode-debug-variable.png"/>
     <figcaption>Et ça nous donne...</figcaption>
 </figure>
 
@@ -433,7 +433,7 @@ On appelle [dépôt](https://fr.wikipedia.org/wiki/D%C3%A9p%C3%B4t_(informatique
 Quand on travaille en équipe, il y a un toujours dépôt central qui fait office de point de jonction entre tous les membres de l’équipe et c’est à travers ce dépôt central que les changements apportés par les différents membres sont partagés et synchronisés entre eux.
 
 <figure style="float: right">
-    <img src="/assets/images/depot-central.svg"/>
+    <img src="assets/images/depot-central.svg"/>
 </figure>
 
 Ce dépôt central est sur un serveur qui peut être un serveur privé visible que des membres de l’équipe.
@@ -613,7 +613,7 @@ Par exemple, il est possible de naviguer le web a l’invite de commandes avec [
 Par contre, quelle que soit la façon dont la page web est rendue, le code qui communique avec le serveur reste le même.
 
 <figure>
-    <img src="/assets/images/organisation-logique-separation-interface-traitement.svg"/>
+    <img src="assets/images/organisation-logique-separation-interface-traitement.svg"/>
 </figure>
 
 Une deuxième division logique s’opère entre le code de traitement et le code des données.
@@ -621,13 +621,13 @@ Par «données» on entend les informations requises au bon fonctionnement de l�
 Par exemple, vos préférences de votre navigateur web (votre page d’accueil, l’automatisation des mises à jours, l’adresse d’un serveur DNS, etc.) sont sauvegardées dans un fichier de configuration.
 
 <figure>
-    <img src="/assets/images/organisation-separation-traitement-donnees.svg"/>
+    <img src="assets/images/organisation-separation-traitement-donnees.svg"/>
 </figure>
 
 Une troisième division logique se fait entre le code de l’application et le code qui teste son bon fonctionnement. 
 
 <figure>
-    <img src="/assets/images/organisation-logique-separation-traitement-test.svg"/>
+    <img src="assets/images/organisation-logique-separation-traitement-test.svg"/>
 </figure>
 
 En terme de code, ces divisions logiques se traduisent par un regroupement du code par ses responsabilité : le code qui présente des données à l’utilisateur ne devrait pas se retrouver dans la même fonction que le code qui va récupérer ces données ou la dans la fonction qui les transforme.
@@ -866,7 +866,7 @@ C’est justement le cas pour les bibliothèques `libc.so.6` et `libm.so.6`.
 Comparons avec notre navigateur :
 
 <figure>
-    <img src="/assets/images/bibliotheque-statique-partagee.svg"/>
+    <img src="assets/images/bibliotheque-statique-partagee.svg"/>
 </figure>
 
 Une bibliothèque partagée présente des avantages et des inconvénients.
@@ -894,7 +894,7 @@ On peut penser à :
 Ça, ce sont des exemples de plateformes logicielles (systèmes d’exploitations ou navigateurs web) mais il y a aussi des différence matérielles comme un processeur de PC [Intel](https://en.wikipedia.org/wiki/List_of_Intel_microprocessors) ou un processeur de téléphone mobile [ARM](https://en.wikipedia.org/wiki/ARM_architecture#Market_share).
 
 <figure style="float: right">
-    <img src="/assets/images/compilation-croisee.svg"/>
+    <img src="assets/images/compilation-croisee.svg"/>
 </figure>
 
 (Pourquoi différents processeurs ?
@@ -911,7 +911,7 @@ Pour ce faire, soit on compile le code dans l’environnement en question, soit 
 ## Gestion de version II
 
 <figure style="float: right">
-    <img src="/assets/images/add-commit-push-pull.svg"/>
+    <img src="assets/images/add-commit-push-pull.svg"/>
 </figure>
 Vous serez appelés·es à travailler en équipe sur une même base de code.
 Ce code sera hébergé sur un serveur central et les modifications apportées par les différents participants doivent être synchronisés périodiquement.
@@ -1033,7 +1033,7 @@ Les tests font office de contrat.
 ### Qu’est-ce que de bons tests ?
 
 <figure>
-    <img src="/assets/images/1-percent-failure-rate.svg"/>
+    <img src="assets/images/1-percent-failure-rate.svg"/>
     <figcaption>1% d’utilisateurs par jour qui désinstallent votre appli...</figcaption>
 </figure>
 
@@ -1051,7 +1051,7 @@ Quels serait les cas «ordinaires» et les cas «extrêmes» ou «pathologiques�
 - le logiciel qui fait fonctionner un laser médical ?
 
 <figure>
-    <img src="/assets/images/march%C3%A9-robustesse.svg"/>
+    <img src="assets/images/march%C3%A9-robustesse.svg"/>
     <figcaption>Une vraie question d'ingénierie...</figcaption>
 </figure>
 
@@ -1068,7 +1068,7 @@ Oui, plus tôt notre programme est à vendre, au plus notre part de marché init
 ### Le coût d’un bogue
 
 <figure>
-    <img src="/assets/images/cout-bogue.svg"/>
+    <img src="assets/images/cout-bogue.svg"/>
     <figcaption>Coût relatif de réparation d’un bogue. Le plus tôt, le mieux.</figcaption>
 </figure>
 
@@ -1295,7 +1295,7 @@ Souvent, ce sont des diagrammes [UML](https://fr.wikipedia.org/wiki/UML_(informa
 Tous les diagrammes du document que vous lisez présentement sont essentiellement des diagrammes UML.
 
 <figure>
-    <img src="/assets/images/high-level-ex2.svg"/>
+    <img src="assets/images/high-level-ex2.svg"/>
     <figcaption>Diagramme UML des composants et modules de l’exercice 2.</figcaption>
 </figure>
 
