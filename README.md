@@ -1,3 +1,6 @@
+# Table des matières
+{:.no_toc}
+
 1. toc
 {:toc}
 
@@ -33,11 +36,11 @@ Outre compiler (ou interpréter) du code et le déboguer facilement, un EDI peut
 - assembler des fichiers en une archive finale.
 - déployer une application web sur un ou plusieurs serveur.
 
-<figure style="float: right;">
+<figure style="float: left">
     <img src="assets/images/with-IDE.svg"/>
 </figure>
 Il existe de nombreux EDIs.
-Certains sont axés sur la plateforme de développement (`AndroidStudio` pour Android, `Xcode` pour la «iFamille», etc.), d’autres sur le langage de programmation (`IntelliJ IDEA` pour Java, `IDLE` pour Python), d’autres encore restent plus agnostiques et permettent à l’utilisateur de les configurer pour la tâche en question, quels que soient la plateforme ou le langage.
+Certains sont axés sur la plateforme de développement ([AndroidStudio](https://developer.android.com/studio) pour Android, [Xcode](https://developer.apple.com/xcode/) pour la «iFamille», etc.), d’autres sur le langage de programmation ([IntelliJ IDEA](https://www.jetbrains.com/idea/) pour Java, [IDLE](https://www.python.org/downloads/) pour Python), d’autres encore restent plus agnostiques et permettent à l’utilisateur de les configurer pour la tâche en question, quels que soient la plateforme ou le langage.
 Pour ce cours, nous allons utiliser [Visual Studio Code](https://code.visualstudio.com/) qui fait parti de la troisième catégorie.
 
 ## Est-ce bien nécessaire ?
@@ -54,24 +57,22 @@ La nécessité d’utiliser un EDI est souvent dictée par l’échelle du proje
 **R :** Comme en cuisine ou dans d’autres domaines, apprendre à faire les choses un peu plus «manuellement» un première fois n’est jamais perdu.
 Une fois qu’on a compris «ce qui se passe sous le capot», on peut s’atteler plus confortablement à de plus grand projets.
 
-*[démo]*
+#### Démo
 
 > Nous avons vu `Xcode`, un EDI sous macOS qui intègre un compilateur, un débogueur et bien d’autres outils. Cet EDI, créé par Apple est l’EDI à utiliser pour développer des applications pour iOS, iWatch, macOS, etc. avec, comme langage de programmation C, C++, Objective-C ou Swift.
 On peut aussi utiliser Xcode pour des applications à utiliser à l’invite de commandes.
 
 > Nous avons aussi vu `Visual Studio Code`, un EDI disponible sous Linux, macOS et Windows.
-Cet EDI se veux extrêmement flexible et peut être configurer pour développer des programmes en divers langages.
+Cet EDI se veux extrêmement flexible et peut être configuré pour développer des programmes en divers langages.
 Le fichier `.vscode/tasks.json` sert à configurer comment compiler notre programme.
 Le fichier `.vscode/launch.json` sert à configurer comment lancer (ou déboguer) notre programme.
 
 # On fait tous des erreurs
 
-## Déboguer
-
 Avez-vous déjà écrit une dissertation sans jamais vous relire ?
 Sans jamais faire ne fût-ce qu’une seule coquille ?
 Probablement pas.
-Même les auteurs de romans les plus chevronnés se relisent pour corriger des erreurs de grammaire ou remanier la structure de leur histoire.
+Même les auteur·trice·s de romans les plus chevronné·e·s se relisent pour corriger des erreurs de grammaire ou remanier la structure de leur histoire.
 
 Développer un programme c’est écrire une histoire avec des formules mathématiques et des énoncés logiques.
 Comme un roman, c’est un travail de création et il n’y a pas de perfection.
@@ -79,7 +80,7 @@ Seulement, les éléments mathématiques et logiques utilisés, eux, doivent êt
 
 Que faire quand le programme ne se comporte pas comme prévu ?
 Quand pour un `X` donné, on obtient pas le `Y` désiré ?
-Il y a plusieurs façon d’analyser la source du problème.
+Il y a plusieurs façon d’analyser, de «déboguer», la source du problème.
 
 ## Déboguer par inspection visuelle
 
@@ -120,18 +121,18 @@ Maintenant, avec vos yeux seulement, trouvez où est l’erreur (ou les erreurs)
 // Donne la taille d'un tableau.
 #define taille_de(A) (sizeof(A) / sizeof(A[0]))
 
-// Décale un tableau de façon circulaire. T[0] <- T[1], ..., T[N] <- T[0]
+// Décale un tableau de façon circulaire. T[0] <- T[1], ..., T[N - 1] <- T[0]
 void rotation(int T[])
 {
     int const taille = taille_de(T);
     if(taille >= 2)
     {
-    int const premiere_valeur = T[0];
-    for(int i = 0; i != taille - 1; ++i)
-    {
-        T[i] = T[i + 1];
-    }
-    T[taille - 1] = premiere_valeur;
+        int const premiere_valeur = T[0];
+        for(int i = 0; i != taille - 1; ++i)
+        {
+            T[i] = T[i + 1];
+        }
+        T[taille - 1] = premiere_valeur;
     }
 }
 ~~~
@@ -142,7 +143,7 @@ Quand l’inspection visuelle devient insuffisante, la deuxième arme utilisée 
 Comme le Petit Poucet qui laisse des traces derrière lui, on affiche à l’écran des informations qui nous apparaissent pertinentes au fur de l’exécution de notre programme.
 En C, on utilise la fonction `printf` pour ce faire.
 
-Aidons-nous à résoudre le problème dans le code précédent avec quelques traces:
+Aidons-nous à résoudre le problème dans le code précédent avec quelques traces :
 
 ~~~ c
 // Donne la taille d'un tableau.
@@ -155,14 +156,14 @@ void rotation(int T[])
     printf("taille_de(T) = %d\n", taille);
     if(taille >= 2)
     {
-    int const premiere_valeur = T[0];
-    for(int i = 0; i != taille - 1; ++i)
-    {
-        printf("T[%d] = %d\n", i, T[i + 1]);
-        T[i] = T[i + 1];
-    }
-    printf("T[%d] = %d\n", taille - 1, premiere_valeur);
-    T[taille - 1] = premiere_valeur;
+        int const premiere_valeur = T[0];
+        for(int i = 0; i != taille - 1; ++i)
+        {
+            printf("T[%d] = %d\n", i, T[i + 1]);
+            T[i] = T[i + 1];
+        }
+        printf("T[%d] = %d\n", taille - 1, premiere_valeur);
+        T[taille - 1] = premiere_valeur;
     }
 }
 
@@ -170,7 +171,7 @@ int chiffres[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 rotation(chiffres);
 ~~~
 
-Et voici ce qu’on observe:
+Et voici ce qu’on observe :
 
 ~~~ c
 taille_de(T) = 2
@@ -217,15 +218,15 @@ Ces traces ne sont pas affichées sur un écran pour que quelqu’un les visionn
 
 Cas où des journaux sont utiles:
 
-- programmes qui ne peuvent être observés directement (p. ex. contrôle d’un réfrigérateur).
+- programmes qui ne peuvent être observés directement (p. ex. diagnostique mécanique d'une voiture avec un [lecteur de code OBD2](https://fr.wikipedia.org/wiki/Diagnostic_embarqu%C3%A9_(automobile))).
 - programmes qui sont exécutés sur une très longue durée dans le temps (p. ex. contrôle d’une centrale électrique).
 - programmes avec plusieurs fils d’exécution (p. ex. serveur multi-clients).
 - programmes avec une exécution en temps réel (p. ex. flux multimédia).
-- programmes distribués (p. ex. [LHC@Home](https://lhcathome.cern.ch/lhcathome/))
+- programmes distribués (p. ex. [Folding@Home](https://foldingathome.org/))
 
 Dans ces circonstances, les journaux servent de «[boîte noire](https://fr.wikipedia.org/wiki/Bo%C3%AEte_noire_(a%C3%A9ronautique))» qu’on analyse pour comprendre une erreur survenue antérieurement et réparer la prochaine version de notre programme qui sera distribué aux utilisateurs.
 
-*[démo]*
+#### Démo
 
 > Nous avons vu que `Visual Studio Code` est très utile pour nous aider à déboguer un programme erroné à «la vitesse de l’humain».
 Le débogueur nous permet de visualiser l’état de notre programme (les fonctions appelées, les valeurs des variables) à chaque ligne de code exécutée.
@@ -239,6 +240,7 @@ Le débogueur nous permet de visualiser l’état de notre programme (les foncti
 > Pour entrer dans une fonction qui est sur le point d’être appelée : `F11`.
 
 > Nous avons vu un exemple de code qui sert à garder de l’information utile dans un journal :
+
 ~~~ c
 char time_s[100];
 time_t now = time(0);
@@ -247,7 +249,7 @@ fprintf(journal, "[%s] %s appelée avec '%s' comme paramètre.\n", time_s, __PRE
 ~~~
 
 > Ce code, inclus dans la fonction `inverse`,  nous dit quand et comment la fonction a été appelée :
-`[2020-02-07 17:03:18.000] char *inverse(char *) appelée avec 'banane' comme argument.`
+`[2021-02-07 17:03:18.000] char *inverse(char *) appelée avec 'banane' comme argument.`
 
 # Comment se protéger de soi-même
 
@@ -274,7 +276,7 @@ Vite !
 Ah, non, mais là j’ai perdu mon historique de `undo` !
 
 Lorsqu’on travaille sur un projet qui dure dans le temps et/ou sur lequel travaillent plus d’une personne, un des outils essentiels à utiliser est un programme de [gestion de version](https://fr.wikipedia.org/wiki/Gestion_de_versions).
-Parmi ces programmes, le plus populaires en 2020 est [git](https://fr.wikipedia.org/wiki/Git).
+Parmi ces programmes, le plus populaires en 2021 est [git](https://fr.wikipedia.org/wiki/Git).
 
 On les appelle des programmes de gestion de «version» parce qu’on les utilise pour créer un historique de notre code.
 Voyez ces versions comme tout autant de points de restauration vers lesquels vous pouvez aller et revenir comme vous voulez.
@@ -324,9 +326,9 @@ Il faut seulement comprendre que ces points de restauration ne coûtent rien et 
 
 Très bien. Nous avons maintenant des points de restauration, nous n’avons plus peur de perdre nos idées.
 
-*[démo]*
+#### Démo
 
-> Nous savons comment utiliser `git` pour créer un dépôt qui contiendra l’historique de notre projet.
+> Nous avons vu comment utiliser `git` pour créer un dépôt qui contiendra l’historique de notre projet.
 
 > Le dépôt est premièrement initialisé avec `git init`.
 
@@ -408,10 +410,10 @@ Notre historique devient alors :
 
 Notez qu’à l’étape `H`, le delta est la somme des deltas entre `C` et `D` et entre `C` et `G`, l’étape `C` étant le point divergence.
 
-Attention : en pratique, au moment de fusionner `D` et `H`, il y aura conflit à cause de la différence entre `vas-tu` d’un côté et `allez-vous` de l’autre.
+Attention : en pratique, au moment de fusionner `D` et `H`, il y aura conflit (nous y reviendrons) à cause de la différence entre `vas-tu` d’un côté et `allez-vous` de l’autre.
 `git` ne peut pas automatiquement deviner ce qu’il faut garder dans cette situation et c’est à l’ingénieur·e de le spécifier.
 
-*[démo]*
+#### Démo
 
 > Nous avons vu que l’historique de notre dépôt peut se composer de plusieurs branches.
 
@@ -442,7 +444,7 @@ Il peut aussi être un service d’hébergement de code comme http://www.github.
 Dans le cadre de ce cours, vous allez utiliser GitHub comme dépôt de code pour vos exercices.
 Cela rend même possible de pouvoir travailler de deux endroits différents (la maison et l’université) sans avoir à trimbaler une clé USB avec son code dessus.
 
-*[démo]*
+#### Démo
 
 > Nous avons vu que GitHub est un service où nous pouvons héberger notre dépôt.
 
@@ -474,7 +476,7 @@ L’interface de `Perforce` est aussi plus accessible aux «non-développeur·se
 J’ai souvent trouvé `git` plus compliqué que nécessaire et `git` n’a certainement pas été créé avec la facilité d’utilisation comme critère mais il faut s’y faire.
 Il existe plusieurs applications avec une interface graphique pour `git` (y compris des extensions de `Visual Studio Code`) pour se faciliter la vie mais ces applications exposent toute la fonctionnalité de `git` qui peut être étourdissante.
 
-# Un makefile c’est un livre de recette
+# Un `makefile` c’est un livre de recette
 
 | **Les Bonnes Recettes de Marino**<br><br>**Sauce Alfredo**<br>**Ingrédients** : beurre, ail, crème, parmesan<br>**Préparation** :<br>1. Dans une poêle, faire revenir l’ail dans du beurre. <br>2. Ajouter la crème. <br>3. Quand la crème s’est épaissit, ajouter le parmesan.<br><br>**Crevettes grillées**<br>**Ingrédients** : beurre, crevettes<br>**Préparation** :<br>1. Nettoyer les crevettes.<br>2. Dans une poêle, faire revenir les crevettes dans du beurre quelques secondes.<br><br>**Fettuccine Alfredo**<br>**Ingrédients** : fettuccine, sauce Alfredo<br>**Préparation** :<br>1. Cuire les pâtes dans un chaudron d’eau bouillante puis égoutter.<br>2. Combiner les pâtes et la sauce Alfredo.<br><br>**Fettuccine Alfredo aux crevettes**<br>**Ingrédients** : fettuccine Alfredo, crevettes grillées<br>**Préparation** :<br>1. Combiner les fettuccine et les crevettes grillées. | **`makefile`**<br><br>sauce-alfredo: beurre ail creme parmesan \| poele<br>&nbsp;&nbsp;faire revenir l’ail dans du beurre dans la poele<br>&nbsp;&nbsp;ajouter la creme<br>&nbsp;&nbsp;attendre que la creme se soit epaissit<br>&nbsp;&nbsp;ajouter le parmesan<br><br>crevettes-grillees: beurre crevettes \| poele<br>&nbsp;&nbsp;nettoyer les crevettes<br>&nbsp;&nbsp;faites revenir les crevettes dans du beurre quelques secondes dans la poele<br><br>fettuccine-alfredo: fettuccine sauce-alfredo \| chaudron<br>&nbsp;&nbsp;faire bouillir de l’eau dans le chaudron<br>&nbsp;&nbsp;cuire les fettuccine<br>&nbsp;&nbsp;égoutter les fettuccine<br>&nbsp;&nbsp;combiner les fettuccine avec la sauce-alfredo<br><br>fettuccine-alfredo-aux-crevettes: fettuccine-alfredo crevettes-grillees<br>&nbsp;&nbsp;combiner les fettucine-alfredo avec les crevettes-grillees |
 
@@ -486,7 +488,7 @@ Le programme [make](https://fr.wikipedia.org/wiki/Make) est un programme d’aut
 Il peut être utilisé pour faire tout ce qui puisse être décrit comme une liste d’étapes à suivre.
 Dans le contexte de la programmation, `make` est utilisé pour **simplifier** et **accélérer** les tâches reliées à la construction des différentes cibles d’une base de code (p. ex. bibliothèques, applications, tests, etc.) ou à son entretien (effacement des fichiers temporaires, installation des programmes, etc.).
 
-## Comment make simplifie notre travail ? 
+## Comment `make` simplifie notre travail&nbsp;? 
 
 Considérez qu’une base de code professionnelle peut consister de dizaines, voire des centaines de fichiers, les développeur·se·s serait très rapidement las d’avoir à compiler à répétition tous ces fichiers à l’invite de commandes !
 `make` est utilisé pour faire abstraction des commandes à lancer à l’invite de commandes pour compiler ou lier les divers fichiers de la base de code.
@@ -508,7 +510,7 @@ gcc -g -c test/main.c -I ./lib -o build/test.o
 gcc build/test.o -Lbuild -lchiffrage -o build/test
 ~~~
 
-## Comment make accélère notre travail ?
+## Comment `make` accélère notre travail&nbsp;?
 
 `make` prend en compte la date et l’heure de modification des cibles dépendantes.
 Si une cible `X` à pour dépendance un fichier `Y`, les commandes correspondantes à la cible `X` ne seront exécutées que si et seulement si le fichier `Y` a été modifié depuis la dernière construction de la cible `X`.
@@ -553,12 +555,12 @@ Les commandes peuvent être tout ce que l’on peut faire à l’invite de comma
 **R :** Oh, que non ! Il y a pléthore d’autres outils :
 
 - Outils plus spécialisés ou qui n’opèrent que dans un écosystème plus particulier.
-P. ex. : `Gradle` pour Java, `Grunt` pour Javascript, `Rake` pour Ruby, etc.
+P. ex. : [Gradle](https://gradle.org/) pour Java, [Grunt](https://gruntjs.com/) pour Javascript, [Rake](https://github.com/ruby/rake) pour Ruby, etc.
 (c.f. https://en.wikipedia.org/wiki/List_of_build_automation_software).
 - Outils propres aux environnements de développement.
 P. ex. : MSBuild et fichier `.sln`, Xcode et fichier `.xcodeproj`, etc.
 - Outils servant à générer des fichiers `makefile`, `.sln`, `.xcodeproj`, etc.
-P. ex. : `configure`, `cmake`, `Meson`, etc. (c.f. https://en.wikipedia.org/wiki/List_of_build_automation_software#Build_script_generation).
+P. ex. : [configure](https://en.wikipedia.org/wiki/Configure_script), [cmake](https://cmake.org/), [Meson](https://mesonbuild.com/), etc. (c.f. https://en.wikipedia.org/wiki/List_of_build_automation_software#Build_script_generation).
 Ces outils sont souvent utilisés dans un contexte de code écrit en langage compilé qui doit être exécuté sur différentes plateformes à la différence de code écrit en langage interprété qui peut être exécuté tel quel.
 
 **Q :** Mais, attendez, c’est un peu comme un EDI ?
@@ -572,7 +574,7 @@ Et puis, c’est moins vieux que la perceuse électrique...
 Plus sérieusement, les divers outils de développement vont et viennent comme autant de vagues de mode mais certains «grands-pères» survivent et continuent d’influencer les nouvelles générations.
 Se familiariser avec `make` c’est comme se familiariser avec le latin.
 
-*[démo]*
+#### Démo
 
 Nous avons vu :
 
@@ -588,7 +590,7 @@ Nous avons vu :
 
 > Le programme `make` est le programme qui interprète un `makefile`.
 
-> En invoquant simplement `make` à l’invite de commande, la première cible est exécutée.
+> En invoquant simplement `make` à l’invite de commande, la toute première cible est invoquée par défaut.
 Ici, on imprime «Bonjour !».
 On obtient le même résultat en spécifiant la cible.
 P. ex. : `make bonjour`.
@@ -706,7 +708,7 @@ int main(int argc, char *argv[])
 }
 ~~~
 
-*[démo]*
+#### Démo
 
 > Nous avons pu témoigner du fait que ces deux programmes, bien qu’écrit avec du code différent on le même comportement et donne le même résultat.
 Cependant, le deuxième programme, du fait de sa bonne division des responsabilités logiques entre des fonctions, est beaucoup plus facile à tester.
@@ -897,10 +899,10 @@ On peut penser à :
     <img src="assets/images/compilation-croisee.svg"/>
 </figure>
 
-(Pourquoi différents processeurs ?
+Pourquoi différents processeurs ?
 Pour différents besoins.
 Par exemple, un PC ayant accès à 800 watts de puissance versus un téléphone mobile avec une batterie fournissant seulement 10 watts.
-Pour le PC on privilégie la puissance de travail, pour le téléphone ce sera la durée de vie.)
+Pour le PC on privilégie la puissance de travail, pour le téléphone ce sera la durée de vie.
 
 Pour que du code compilé (contrairement à interprété) fonctionne sous divers environnements d’exécution, il doit être compilé plusieurs fois.
 Il doit être compilé *n* fois pour *n* environnements.
@@ -973,9 +975,9 @@ H -> I - - -> L ->  ?
 | Bonjour Michèle. Comment allez-vous ? On se voit à 14h ? Vous n’auriez pas cent euros ? | J | `-13h +14h` |
 | Bonjour Michèle. Comment allez-vous ? On se voit à 15h ? Vous n’auriez pas cent euros ? | K | `-13h +15h` |
 | Bonjour Michèle. Comment allez-vous ? On se voit à 14h ? Vous n’auriez pas cent euros ? | L | `-13h +14h` |
-| | ? | `**-13h**` `+15h` |
+| | ? | ***`-13h`*** `+15h` |
 
-*[démo]*
+#### Démo
 
 > Nous avons vu ce qui se passe quand deux branches créées sur un même dépôt entrent en conflit.
 La première branche à être fusionnée «gagne» et la deuxième fait face à un conflit qui doit être résolu à la main.
@@ -1009,7 +1011,7 @@ H -> I - - -> L -> M
 | Bonjour Michèle. Comment allez-vous ? On se voit à 14h ? Vous n’auriez pas cent euros ? | L | `-13h +14h` |
 | Bonjour Michèle. Comment allez-vous ? On se voit à 14h ? Vous n’auriez pas cent euros ? Rendez-vous au club ! | M | `+Rendez-vous au club !` |
 
-*[démo]*
+#### Démo
 
 > Nous avons vu comment Alice et Bob peuvent, en parallèle, modifier le contenu de la lettre et, tant qu’ils ne modifient pas exactement le même contenu (la même ligne de texte), `git` additionne tous les deltas apportés par Alice et Bob pour arriver au résultat final sans conflits.
 Bien sûr, Alice et Bob doivent régulierement revenir sur la branche `master` et la synchroniser avec GitHub pour être chacun au fait des plus récentes modifications de l’autre.
@@ -1255,7 +1257,7 @@ Deux exemples : simuler un réseau de mauvaise qualité ou simuler un ordinateur
 Certaines base de code ont des suites de tests très élargies qui peuvent durer plusieurs heures !
 Un système d’IC va répartir ces tests entre plusieurs machines ce qui divisera le temps d’exécution.
 
-*[démo]*
+#### Démo
 
 > Nous avons vu qu’au moment d’ouvrir un «Pull Request» pour l’exercice 3, GitHub lance une machine virtuelle qui fait exactement ce nous faison nous-même localement pour compiler et tester notre programme.
 Le fichier de configuration qui dicte cette action à GitHub est `./github/workflows/test-master.yml`.
@@ -1446,7 +1448,7 @@ Ai-je le droit de copier-coller ce code dans mon programme ?
 - Il n’y a pas d’indications contraires évidentes...
 - L’auteur semble vouloir nous aider...
 - C’est que trois lignes de code...
-- Essentiellement, tout ce qu’on trouve sur  Internet c’est gratuit... Non ?  
+- Essentiellement, tout ce qu’on trouve sur Internet c’est gratuit... Non ?  
 **R :** Voir réponse précédente.
 
 «Sauf indication contraire» ?
