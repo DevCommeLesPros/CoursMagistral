@@ -19,6 +19,10 @@
     display: table;
 }
 
+code {
+    font-size: smaller; // Relatif au parent plutôt qu'absolu.
+}
+
 figcaption {
     color: darkgray;
     font-style: italic;
@@ -27,4 +31,13 @@ figcaption {
 
 figure {
     text-align: center;
+    padding: 3px;
+}
+
+img {
+    border-style: none;
+}
+
+p {
+    text-align: justify;
 }
