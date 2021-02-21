@@ -578,26 +578,42 @@ Se familiariser avec `make` c’est comme se familiariser avec le latin.
 
 Nous avons vu :
 
->un `makefile` avec trois cibles simples :  
->bonjour:
-><br>&nbsp;&nbsp;echo Bonjour !
+>Un `makefile` avec deux cibles simples pour afficher des messages à l'invite de commande.
+> La deuxième cible étant dépendente de la première :
+
+>dire-bonjour:
+><br>&nbsp;&nbsp;echo "Salut, DCLP !"
 ><br><br>
->compilation:
-><br>&nbsp;&nbsp;gcc main.c
-><br><br>
->executer: compilation
-><br>&nbsp;&nbsp;./a.out
+>dire-ca-va: dire-bonjour
+><br>&nbsp;&nbsp;echo "Ça va ?"
 
 > Le programme `make` est le programme qui interprète un `makefile`.
 
 > En invoquant simplement `make` à l’invite de commande, la toute première cible est invoquée par défaut.
-Ici, on imprime «Bonjour !».
+Ici, on affice «Salut, DCLP !».
 On obtient le même résultat en spécifiant la cible.
-P. ex. : `make bonjour`.
+P. ex. : `make dire-bonjour`.
 
-> On peut aussi invoquer les autres cibles avec `make compilation` et `make executer`.
+>Ce même makefile avec des cibles pour créer des fichiers objets, un programme qui
+>assemble les fichiers objets en un programme `bonjour` et une cible qui lance le
+>programme à l'invite de commande :
 
-> Nous avons vu aussi que d’invoquer directement la cible `executer` va d’abord compiler notre programme car la cible `executer` dépend de la cible `compilation`.
+>bonjour.o: bonjour.c bonjour.h
+><br>&nbsp;&nbsp;gcc -c bonjour.c -o bonjour.o
+><br><br>
+>main.o: main.c bonjour.h
+><br>&nbsp;&nbsp;gcc -c main.c -o main.o
+><br><br>
+>bonjour: bonjour.o main.o
+><br>&nbsp;&nbsp;gcc bonjour.o main.o -o bonjour
+><br><br>
+>dire-bonjour: bonjour
+><br>&nbsp;&nbsp;./bonjour
+
+>Nous avons vu que d’invoquer directement la cible `dire-bonjour` va d’abord compiler notre programme car la cible `dire-bonjour` dépend de la cible `bonjour`.
+Celui-ci étant dépendent d'autres cibles, celles-ci seront aussi invoquées.
+
+>Si les ingrédients d'une cible ont été modifiés depuis sa dernière invocation, elle sera «re-construite».
 
 # Il faut s’organiser
 
@@ -647,13 +663,13 @@ int main()
         ssize_t lu;
         if((lu = getline(&ligne, &taille, db)) != -1)
         {
-            // Segmentation de la ligne à la virgule.
+            // Segmentation de la ligne à chaque virgule.
             for(char* b, *e = ligne; lu; lu -= e - b)
             {
                 b = e;
                 while(*e != '\0' && *e != ',') ++e;
                 if(*e == ',') *e++ = '\0';
-                // Présentation du paramètre.
+                // Affichage du paramètre.
                 printf("%s\n", b);
             }
         }
@@ -689,7 +705,7 @@ void segmentation(char *ligne, char const separateur)
     }
 }
 
-void presentation(char const* ligne, ssize_t const n)
+void affichage(char const* ligne, ssize_t const n)
 {
     for(char const *p = ligne; p && p != ligne + n + 1;)
     {
@@ -702,7 +718,7 @@ int main(int argc, char *argv[])
     char *parametres = NULL;
     ssize_t const taille = lecture_parametres("parametres.csv", &parametres);
     segmentation(parametres, ',');
-    presentation(parametres, taille);
+    affichage(parametres, taille);
     free(parametres);
     return 0;
 }
