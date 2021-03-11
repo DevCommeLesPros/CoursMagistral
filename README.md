@@ -1208,16 +1208,16 @@ void crediter(compte *c, int montant)
     c->solde += montant;
 }
 
-void operation(db* comptes, int numero, void (*f)(compte*, int), int montant)
+void operation(db* comptes, int numero, int montant, void (*op)(compte*, int))
 {
     compte *c = find(comptes, numero);
     if(c)
     {
-        f(c, montant);
+        op(c, montant);
     }
 }
 
-operation(comptes, 123, credit, 100);
+operation(comptes, 123, crediter, 100);
 ~~~
 
 Maintenant les deux fonctions ont été réduites à leur essence.
@@ -1226,7 +1226,7 @@ L’ensemble est non seulement mieux testable car les différentes parties sont 
 
 *[démo, ROT13 par César]*
 
-> Le bonus 1 individuel vous demande de réusiner (retravailler) votre code pour faire en sorte que les fonctions `chiffre_ROT13` et `chiffre_Cesar` accomplissent leur responsabilités non pas avec du code implémentant directement leur algorithme respectif mais en appelent la fonction `chiffre_Vigenere`.
+> Le bonus individuel vous demande de réusiner votre code pour faire en sorte que les fonctions `chiffre_ROT13` et `chiffre_Cesar` accomplissent leur responsabilités non pas avec du code implémentant directement leur algorithme respectif mais en appelent la fonction `chiffre_Vigenere`.
 Ce faisant, vous réduisez la quantité de code écrit et, par la fait même, la possibilité d’erreurs à différents endroits de votre base de code.
 
 # Intégration continue
@@ -1235,7 +1235,7 @@ Auparavant, il était fréquent que le cycle de *développement-test-livraison* 
 Cette pratique s’est modernisée en introduisant des outils qui permettent de raccourcir ce cycle et que les développeur·se·s obtiennent un «feedback» beaucoup plus rapide sur la la convenance et la qualité de leur code.
 Plus les problèmes sont détectés tôt, plus facilement ils seront corrigés.
 
-L’intégration continue consiste à s’assurer qu’avant qu’une modification soit intégrée dans le logiciel (p. ex. en fusionnant une branche introduisant une nouvelle fonctionnalité dans la branche `master`), tous les tests existant soient exécutés de manière indépendante et impartiale.
+L’intégration continue (IC) consiste à s’assurer qu’avant qu’une modification soit intégrée dans le logiciel (p. ex. en fusionnant une branche introduisant une nouvelle fonctionnalité dans la branche `master`), tous les tests existant soient exécutés de manière indépendante et impartiale.
 Du fait, le système d’IC est habituellement un serveur qui simule l’intégration du nouveau code dans la base de code courante et exécute tous les tests et autres scripts qui s’assurent que le programme reste fonctionnel et dans un état «livrable».
 
 Mais si le développeur s’assure d’exécuter les tests avant d’intégrer son code, pourquoi le faire une deuxième fois ?
@@ -1259,8 +1259,13 @@ Du code qui fonctionne sous Linux peut ne pas même compiler sous Windows ou iOS
 Il n’est pas faisable de faire en sorte que tous les développeurs d’une équipe testent leurs modifications en tout temps sur toutes les plateformes requises.
 Un système d’IC peut offrir cette possibilité.
 
-Il est même possible que votre code contienne un bogue qui ne se manifeste pas 100% du temps.
-Tester votre programme sur un autre ordinateur augmente vos chances de découvrir ce bogue.
+Peut-être avez-vous déjà écrit une application pour votre téléphone Android ?
+Elle fonctionnait ?
+Fort bien.
+Mais fonctionnera-t-elle pour [tous les téléphones Android présentement utilisés](https://gs.statcounter.com/android-version-market-share/mobile-tablet/worldwide) ?
+
+Il est même possible que votre code contienne un bogue qui ne se manifeste pas 100% du temps sur votre ordinateur.
+Tester votre programme un autre ordinateur ou une autre platforme augmente vos chances de découvrir ce bogue.
 
 ### Vous ne pouvez pas tout faire
 
@@ -1273,6 +1278,20 @@ Deux exemples : simuler un réseau de mauvaise qualité ou simuler un ordinateur
 Certaines base de code ont des suites de tests très élargies qui peuvent durer plusieurs heures !
 Un système d’IC va répartir ces tests entre plusieurs machines ce qui divisera le temps d’exécution.
 
+### Plus on est de fous, moins on rit
+
+Vous travaillez en binôme et vous êtes en permanence sur Discord.
+Il n'y qu'un seul canal de communication, direct et instantané.
+Tout va bien.
+Mais au plus votre équipe grossit, au plus le nombre de canals de communcation entre tous les contributeurs augmente !
+(Quizz : combien de conversation téléphonique sont possible entre 2, 3, et 10 interlocuteurs ?)
+
+Gérer une petite base de code, passe encore.
+Gérer la base de code de [Firefox](https://www.openhub.net/p/firefox), c'est une toute autre histoire.
+Les systèmes d'IC mis en place pour Firefox testent exhaustivement tous les scénarios possibles sur autant de platforme possible.
+Ils servent de «gardiens» de la base de code.
+N'entre pas qui veux !
+
 #### Démo
 
 > Nous avons vu qu’au moment d’ouvrir un «Pull Request» pour l’exercice 3, GitHub lance une machine virtuelle qui fait exactement ce nous faison nous-même localement pour compiler et tester notre programme.
@@ -1281,7 +1300,7 @@ Le fichier de configuration qui dicte cette action à GitHub est `./github/workf
 # Documentation
 
 En tant qu’ingénieur·e, vous avez à produire deux types de documentation pour deux publics différents.
-Comme tout bon orateur, il faut adapter votre discours à votre audience.
+Comme tout bon orateur, il vous faut adapter votre discours à votre audience.
 
 ## Documentation pour l’utilisateur·trice
 
@@ -1294,7 +1313,7 @@ Le joueur «apprend en faisant».
 Cette documentation doit couvrir les interactions et les erreurs les plus fréquentes.
 
 Des exemples de documentations pour l’utilisateur que vous avez déjà consultées en tant que développeur·se ?
-Peut-être https://docs.python.org/ ou https://cppreference.com ?
+Peut-être https://docs.python.org/ ou encore https://cppreference.com ?
 
 ## Documentation pour l’ingénieur·e
 
