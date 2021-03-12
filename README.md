@@ -1062,6 +1062,7 @@ Après 70 jours d’utilisation quotidienne, vous aurez perdu la moitié de vos 
 Avec [2,5 milliards d’utilisateurs](https://www.statista.com/statistics/264810/number-of-monthly-active-facebook-users-worldwide/), pour Facebook, les «cas rares» ne sont pas rares du tout.
 Il leur est impératif de toujours prendre en compte les cas rares plutôt que de les balayer sous le tapis en pensant que «ça n’arrivera jamais».
 
+Tester est un effort de créativité et d'imagination.
 Quels serait les cas «ordinaires» et les cas «extrêmes» ou «pathologiques» pour :
 
 - une fonction `bool anagramme(char* gauche, char* droite)` ? 
@@ -1231,9 +1232,15 @@ Ce faisant, vous réduisez la quantité de code écrit et, par la fait même, la
 
 # Intégration continue
 
+Gérer une petite base de code, passe encore.
+Gérer la base de code de [Firefox](https://www.openhub.net/p/firefox), c'est une toute autre histoire.
+Les systèmes d'intégration continue mis en place pour Firefox testent exhaustivement tous les scénarios possibles sur autant de platforme possible.
+Ils servent de «gardiens» de la base de code.
+N'entre pas qui veut !
+
 Auparavant, il était fréquent que le cycle de *développement-test-livraison* s’étirait sur plusieurs jours, voire des semaines.
-Cette pratique s’est modernisée en introduisant des outils qui permettent de raccourcir ce cycle et que les développeur·se·s obtiennent un «feedback» beaucoup plus rapide sur la la convenance et la qualité de leur code.
-Plus les problèmes sont détectés tôt, plus facilement ils seront corrigés.
+Cette pratique s’est modernisée en introduisant des outils qui permettent de raccourcir ce cycle et que les développeur·se·s obtiennent un «feedback» beaucoup plus rapide sur la convenance et la qualité de leur code.
+Plus les problèmes sont détectés tôt, plus facilement ils seront corrigés (et moins leur coût associé est élevé).
 
 L’intégration continue (IC) consiste à s’assurer qu’avant qu’une modification soit intégrée dans le logiciel (p. ex. en fusionnant une branche introduisant une nouvelle fonctionnalité dans la branche `master`), tous les tests existant soient exécutés de manière indépendante et impartiale.
 Du fait, le système d’IC est habituellement un serveur qui simule l’intégration du nouveau code dans la base de code courante et exécute tous les tests et autres scripts qui s’assurent que le programme reste fonctionnel et dans un état «livrable».
@@ -1284,13 +1291,7 @@ Vous travaillez en binôme et vous êtes en permanence sur Discord.
 Il n'y qu'un seul canal de communication, direct et instantané.
 Tout va bien.
 Mais au plus votre équipe grossit, au plus le nombre de canals de communcation entre tous les contributeurs augmente !
-(Quizz : combien de conversation téléphonique sont possible entre 2, 3, et 10 interlocuteurs ?)
-
-Gérer une petite base de code, passe encore.
-Gérer la base de code de [Firefox](https://www.openhub.net/p/firefox), c'est une toute autre histoire.
-Les systèmes d'IC mis en place pour Firefox testent exhaustivement tous les scénarios possibles sur autant de platforme possible.
-Ils servent de «gardiens» de la base de code.
-N'entre pas qui veux !
+(Quizz : combien de conversations téléphonique sont possible entre 2, 3, et 10 interlocuteurs ?)
 
 #### Démo
 
