@@ -1566,4 +1566,4 @@ Et comme l’anglais est la lingua franca de la programmation, vous verrez souve
 
 Une collection d’histoires de débogage racontées par des développeur·se·s : <https://github.com/danluu/debugging-stories>
 
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
