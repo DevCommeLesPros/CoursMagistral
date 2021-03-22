@@ -1307,19 +1307,19 @@ Comme tout bon orateur, il vous faut adapter votre discours à votre audience.
 
 Ceci constitue le manuel d’instructions de votre programme et, dépendamment du profil de vos utilisateurs, vous aurez à adapter la technicité de votre langage.
 Ces instructions peuvent prendre aussi différentes formes.
-Par exemple, un vidéo tutoriel vaut mille mots d’explication abstraite, surtout pour des programmes très interactifs.
+Par exemple, un tutoriel vidéo vaut mille mots d’explication abstraite, surtout pour des programmes très interactifs.
 Pour certains jeux, c’est même l’évolution du joueur dans un premier niveau avec un environnement contrôlé qui fait office de documentation.
 Le joueur «apprend en faisant».
 
 Cette documentation doit couvrir les interactions et les erreurs les plus fréquentes.
 
-Des exemples de documentations pour l’utilisateur que vous avez déjà consultées en tant que développeur·se ?
-Peut-être https://docs.python.org/ ou encore https://cppreference.com ?
+Des exemples de documentations pour l’utilisateur que vous auriez déjà consultées en tant que développeur·se ?
+Peut-être «[man gcc](https://man7.org/linux/man-pages/man1/gcc.1.html)» à l'invite de commandes ou encore <https://cppreference.com> ?
 
 ## Documentation pour l’ingénieur·e
 
 Ceci constitue le manuel d’entretien de votre programme.
-Le client, c’est vous.
+Le client, c’est vous, c'est votre co-équipier·ère.
 Cette documentation est bien sûre plus technique et doit vous permettre de revenir rapidement sur vos pas et de comprendre la structure du système et le pourquoi du comment.
 Ceci afin de pouvoir rapidement résoudre un problème ou d’améliorer votre programme.
 
@@ -1328,7 +1328,9 @@ Il y a plusieurs degrés ou niveaux de documentation.
 ### Haut niveau
 
 Ici sont décrites les responsabilités des divers modules et composants de votre programme ainsi que les relations entre ces modules et composants.
+Cette documentation donne une vue d'ensemble du projet.
 Pour décrire et documenter l’organisation logique des composants d’un programme, on utilise des diagrammes.
+
 Souvent, ce sont des diagrammes [UML](https://fr.wikipedia.org/wiki/UML_(informatique)).
 Tous les diagrammes du document que vous lisez présentement sont essentiellement des diagrammes UML.
 
@@ -1340,27 +1342,27 @@ Tous les diagrammes du document que vous lisez présentement sont essentiellemen
 ### Bas niveau
 
 Essentiellement, ce seront vos commentaires dans votre code qui peuvent être assemblés en un seul document qui vous aideront vous, ou un·e futur·e collègue de travail à comprendre pourquoi et comment le code fait ce qu’il fait.
+C'est ici qu'on entre dans les détails.
 
 # Stades de développement
 
 Entre le moment où vous écrivez la première ligne de code de votre programme et le moment où vous avez votre premier·ère utilisateur·trice, votre base de code code passera par plusieurs [degrés de maturité](https://en.wikipedia.org/wiki/Software_release_life_cycle).
 
 Un moyen de communiquer la maturité d’un programme est par sa version.
-La numérotation de version la plus répandue suit le schéma «X.Y.Z».
-Cependant, l’exacte signification des chiffres n’est pas universelle.
+La numérotation de version la plus répandue suit le schéma «X.Y.Z» cependant l’exacte signification des chiffres n’est malheureusement pas universelle.
 Le standard le plus connu est décrit par les [spécifications de gestion sémantique](https://semver.org/lang/fr/) où :
 
 1. X représente le numéro de version majeur.
-Il est incrémenté quand sont introduits des changements non-compatibles avec la version majeure courante.
+X passe à X + 1 quand sont introduits des changements non-compatibles avec la version X.
 1. Y représente le numéro de version mineur.
-Il est incrémenté quand sont introduits de nouvelles fonctionnalités compatibles avec la version majeure courante.
+Y passe à  + 1 quand sont introduits de nouvelles fonctionnalités compatibles avec la version X.
 1. Z représente le numéro de correctif.
-Il est incrémenté quand sont introduits des corrections de bogues ou autres.
+Z passe à Z + 1 quand sont introduits des corrections de bogues ou autres améliorations qui ne sont pas directement visibles par l'utilisateur.
 
 Ce ne sont pas tous les projets logiciels qui ont besoin d’une version.
 Un site web, par exemple, peut changer à tous les jours et donner une version sémantique n’aurait que peu de sens.
 
-## Pre-alpha (version 0.*n*.0 ou 1.0.0-alpha.*n*+pre)
+## Pre-alpha (version 1.0.0-alpha.*n*+pre ou 0.*n*.0)
 
 ### Spécifications fonctionnelles
 
@@ -1373,10 +1375,21 @@ Pour une voiture de luxe, la réponse à cette question est «oui» et les sièg
 Pour une voiture plus économique, cette fonctionnalité n’est pas requise et la réponse est «non».
 Si le document d’analyse ne répond pas à une question, révisez-le.
 
+Voici un véritable exemple de spécifications fonctionnelles données à des ingénieurs automobiles en 1936 (époque où la notion de sexisme était différente d'aujourd'hui !) :
+
+> « Faites étudier par vos services une voiture pouvant transporter deux cultivateurs en sabots, cinquante kilos de pommes de terre ou un tonnelet à une vitesse maximum de 50 km/h pour une consommation de trois litres d’essence aux cent kilomètres.
+En outre, ce véhicule doit pouvoir passer dans les plus mauvais chemins, il doit être suffisamment léger pour être manié sans problèmes par une conductrice débutante.
+Son confort doit être irréprochable car les paniers d’oeufs transportés à l’arrière doivent arriver intacts.
+Il devra également être possible de monter à 4 personnes dans la voiture sans quitter son chapeau de la tête.
+Son prix devra être bien inférieur à celui de notre Traction Avant. »
+
+Une voiture a bien étée contruite pour répondre à ces demandes.
+Savez-vous laquelle ?
+
 ### Spécifications de conception
 
 À cette étape, on analyse les besoins et les exigences techniques du programme.
-La division des responsabilités en modules, le type de base de données à utiliser, le langage de programmation à employer, les bibliothèques tierce partie à intégrer, l’interface utilisateur, etc.
+La division des responsabilités en modules, le type de base de données à utiliser, le langage de programmation à employer, les bibliothèques tierces à intégrer, l’interface utilisateur, etc.
 Ces spécifications de conception décrivent le «comment» et servent de communication au sein de l’équipe de développeur·se·s.
 
 Comment les conducteurs vont ajuster leur siège ?
@@ -1388,7 +1401,7 @@ Ou un mécanisme sous le siège ?
 Viens ensuite la programmation comme telle où, petit à petit, on écrit le code qui satisfait les exigences du problème.
 Pendant cette phase, il est important de construire progressivement le programme et de suppléer chaque ajout de fonctions par des tests associés.
 
-À ce stade, les fonctions ou modules qui compose le programme sont [testés séparément](https://fr.wikipedia.org/wiki/Test_unitaire), ce sont des tests unitaires.
+À ce stade, les fonctions ou modules qui compose le programme sont testés séparément, ce sont des [tests unitaires](https://fr.wikipedia.org/wiki/Test_unitaire).
 Le programme n’est pas encore prêt à être testé dans son ensemble.
 
 Pour notre exemple de voiture, à ce stade nous avons un moteur, testé en isolation et un système de freinage aussi testé en isolation, etc.
@@ -1399,7 +1412,7 @@ Le programme se tient suffisamment debout pour être testé [dans son ensemble](
 Le programme est testé par les développeur·se·s et/ou des testeur·se·s en interne.
 
 Pour notre exemple de voiture, à ce stade nous avons ce qui ressemble à une voiture comme on en connaît et qui est testée comme telle.
-Elle sera en premier testée par les concepteurs et ensuite par des pilotes expérimentés.
+Elle sera en premier testée par les concepteurs et ensuite par des pilotes expérimenté·e·s.
 
 À la fin de cette phase, le programme contient toutes les fonctionnalités demandées et aucune nouvelle [fonctionnalité ne sera ajouté](https://fr.wikipedia.org/wiki/Feature_freeze) à partir de ce moment. 
 
@@ -1421,17 +1434,17 @@ Profitez-en, ça ne dure qu’un après-midi.
 
 ## Support
 
-Après la sortie publique d’un logiciel, l’auteur·e peut (ou doit, si un contrat le stipule) offrir un support technique.
+Après la sortie publique d’un logiciel, l’auteur·trice peut (ou doit, si un contrat le stipule) offrir un support technique.
 Pendant cette phase, le programme continu à être testé pour de potentielles [régressions](https://fr.wikipedia.org/wiki/Test_de_r%C3%A9gression).
-C’est-à-dire qu’en aucun cas on ne doit ré-introduire d’anciens bogues résolu en essayant de réparer des bogues existants ou d’ajouter de nouvelles fonctionnalités.
+C’est-à-dire qu’en aucun cas on ne doit ré-introduire d’anciens bogues résolu en essayant de réparer des bogues existants ou en ajoutant de nouvelles fonctionnalités.
 
-### Correctifs (version 1.0.*n*)
+### Correctifs (version 1.0.*z*)
 
 Personne n’est à l’abri de bogues découverts une fois le logiciel officiellement livré.
 Quand des bogues sont toujours présents dans la version 1.0.0 et que ces bogues affectent le bon fonctionnement du programme, on y apporte des [correctifs](https://fr.wikipedia.org/wiki/Patch_(informatique)).
 Ce ne sont que des modifications qui ajuste ou corrige l’implémentation des fonctionnalités déjà existantes dans le programme.
 
-### Ajouts rétrocompatibles (version 1.*n*.0)
+### Ajouts rétrocompatibles (version 1.*y*.0)
 
 On peut aussi ajouter de nouvelles fonctionnalités compatibles avec une version antérieur du programme.
 
@@ -1441,13 +1454,13 @@ On s’attend aussi à ce que cette compatibilité soit [réciproque](https://fr
 
 Par contre, si les ajouts sont de telle envergure que les fichiers enregistrés par la version 1.0.0 sont inutilisables, c’est qu’il est temps d’appeler cette nouvelle version «2.0.0».
 
-## Versions subséquentes (version *N*.0.0)
+## Versions subséquentes (version *X*.0.0)
 
 Les besoins de vos client changeront avec le temps.
 Ce qui était important avant ne l’est plus et vice-versa ou encore vous avez trouvé comment faire encore mieux en intégrant de nouvelles technologies ou systèmes.
 Pour quelque raisons que ce soit, il est temps de penser à la prochaine version de votre programme.
 
-Le cycle de développement recommence en partant des [spécifications fonctionnelles](https://www.dropbox.com/scl/fi/12l29vxc1v4z74wum6ay3/D-velopper-comme-les-pros.paper?dl=0&rlkey=gbd3b2ajnlo93wz6xvsph5bcu#:h2=Sp%C3%A9cifications-fonctionnelles).
+Le cycle de développement recommence en partant des [spécifications fonctionnelles](#sp%C3%A9cifications-fonctionnelles).
 
 
 ## Gestion de version III
@@ -1464,7 +1477,7 @@ A - - -> D - - - - - - -> G - - -> J - - -> M
 ~~~
 
 Dans cet exemple, le commit  `D` correspond au moment ou la version 1.0 était finalisée.
-À partir de cette étape commence le développement de la version 2.0 qui survient au commit `M`.
+À partir de cette étape commence le développement de la version 2.0 dont le lancement survient au commit `M`.
 On remarque aussi que la version 1.0 s’est vue évoluer vers une version 1.1.
 
 # «J’ai trouvé du code sur l’Internet»
@@ -1476,8 +1489,10 @@ Ai-je le droit de la copier-coller dans ma dissertation ?
 - C’est pas écrit « tous droits réservés »...
 - Il n’y a pas de symbole «©»
 - Essentiellement, tout ce qu’on trouve sur Internet c’est gratuit... Non ?  
+
 **R :** Sauf indication contraire, les droits d’auteurs s’appliquent et sa reproduction doit faire l’objet d’une demande explicite.
-Si elle est entré dans le domaine public, sa reproduction est libre mais l’auteur doit être cité.
+Si elle est entrée dans le domaine public, sa reproduction est libre mais l’auteur doit être cité.
+Les oeuvres de Molière sont du domaine public, celles de [J. K. Rowling](https://fr.wikipedia.org/wiki/J._K._Rowling) ne le sont pas encore.
 
 **Q :** J’ai trouvé du code sur Internet.
 Ai-je le droit de copier-coller ce code dans mon programme ?
@@ -1485,6 +1500,7 @@ Ai-je le droit de copier-coller ce code dans mon programme ?
 - L’auteur semble vouloir nous aider...
 - C’est que trois lignes de code...
 - Essentiellement, tout ce qu’on trouve sur Internet c’est gratuit... Non ?  
+
 **R :** Voir réponse précédente.
 
 «Sauf indication contraire» ?
@@ -1518,10 +1534,10 @@ Inversement, il existe des [licences «shared source»](https://fr.wikipedia.org
 **Q :** Donc, je peux ré-utiliser ce code que j’ai trouvé sur l’Internet dans mon programme ?  
 **R :** Oui si sa licence est une licence de logiciel libre.
 Soyez attentifs à aussi garder la licence en question intacte et de la redistribuer avec le code.
-Une licence de logiciel libre ne vous permet pas de vous arroger la paternité du logiciel.
+Une licence de logiciel libre *ne vous permet pas de vous arroger la paternité du logiciel*.
 
 **Q** :  Quel est la licence de code sur http://stackoverflow.com ?  
-**R** : Le code sur StackOverflow est CC BY-SA 3.0: https://creativecommons.org/licenses/by-sa/3.0/fr/
+**R** : Le code sur StackOverflow est [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/fr/).
 
 **Q :** Est-ce que je dois mettre mon code sur l’Internet ?  
 **R :** Sans avoir à en faire son hobby, pour des étudiants ou des professionnels, avoir du code consultable en ligne qui porte son nom est une bonne façon de démontrer ce qu’on est capable de faire et complémente favorablement le C.V.
